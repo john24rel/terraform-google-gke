@@ -1,40 +1,52 @@
-# terraform-google-gke
-Terraform module for GKE with custom buckets 
+## Terraform module for GKE with custom buckets
 
-To create a terraform module for gke you should specify  
-
-
-source = "insert source here" #in our case ../../
-cluster_name = "" # (required) please create a unique name
-google_region = "" # (optional) you can specify location of your cluster us-east1, us-central1, etc. 
-min_master_version = "" #(optional) you can specify min version of the master
-initial_node_count = "" # (optional) how many nodes we have inittially
-google_project_id = "" # (optional) please put your project id (this is optional)
-cluster_node_count = "" # (optional)
-cluster_version = "" # (optional) for example "1.15"
-google_credentials = "" # (optional) you should put the name of the file with creadentials 
-
-Please fill out the following arguments
-
-name - (Required) The name of the cluster, unique within the project and location.
-
-location - (Optional) The location (region or zone) in which the cluster master will be created, as well as the default node location. 
-
-node_locations - (Optional)
-
-initial_node_count - (Optional) The number of nodes to create in this cluster's default node pool. 
-
-min_master_version - (Optional) The minimum version of the master.
-
-node_pool - (Optional) List of node pools associated with this cluster. 
-
-Project - (Optional) The ID of the project in which the resource belongs. If it is not provided, the provider project is used.
-
-Service_account - (Optional) The service account to be used by the Node VMs. If not specified, the "default" service account is used.
+To be able to use following terraform module please follow the documentation. 
 
 
-After filling out all necessary fields go to example folder and run:
+## Requirements
+
+* Terraform >= 0.11.14
+* provider.google: version = "~> 2.20"
+
+
+
+## Calling module
+
+Your `main.tf` should look like this
+```
+module "gke_cluster" {
+    source  = "fuchicorp/google/gke"
+    cluster_name = "cluster-gke"
+    google_region = "us-central1"
+    google_project_id = ""
+    cluster_node_count = "2"
+    cluster_version = "1.15"
+    google_credentials = "./fuchicorp-service-account.json" # service account 
+}
+```
+
+After you finish with defining all required variables go ahead and run `terraform init`
+
 ```
 terraform init
-terraform apply
-``` 
+```
+
+## Variables
+
+For more info, please see the [variables file](?tab=inputs).
+
+| Variable               | Description                         | Default                                               | Type |
+| :--------------------- | :---------------------------------- | :---------------------------------------------------: | :--------------------: |
+| `google_project_id` | Google account project id | `(Required)` | `string` |
+| `google_region` | Name of the namespace | `(Required)` | `string` |
+| `cluster_version` | Version of the cluster. | `(Required)` | `string` |
+| `cluster_node_count` | Number of nodes for the cluster. | `(Required)` | `string` |
+| `google_credentials` | your google service account `example.json`| `(Required)` | `string` |
+| `cluster_network` |The name or self_link of the Google Compute Engine network to which the cluster is connected. | `(Optional)` | `string` |
+| `cluster_name` | The name of the cluster, unique within the project and location. | `(Required)` | `string` |
+| `machine_type` | The name of a Google Compute Engine machine type. | `(Optional)` | `string` |
+
+If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
+
+Developed by FuchiCorp members 
+
