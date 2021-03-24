@@ -25,7 +25,7 @@ module "gke_cluster" {
     image_type        = "COS"
     disk_size_in_gb   = "10"
     labels            = {
-        "label" = "fuchicorp"
+        "label" = "fuchicorp-project"
     }
 }
 ```
