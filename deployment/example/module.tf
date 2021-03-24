@@ -10,6 +10,6 @@ module "gke_cluster" {
     disk_size_in_gb   = "10"
     machine_type      = "n1-standard-2"
     labels            = {
-        "label" = "fuchicorp"
+        "label" = "fuchicorp-project"
     }
 }
