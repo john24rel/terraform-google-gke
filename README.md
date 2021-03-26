@@ -22,6 +22,11 @@ module "gke_cluster" {
     cluster_node_count = "2"
     cluster_version = "1.15"
     google_credentials = "./fuchicorp-service-account.json" # service account 
+    image_type        = "COS"
+    disk_size_in_gb   = "10"
+    labels            = {
+        "label" = "fuchicorp-project"
+    }
 }
 ```
 
@@ -47,6 +52,8 @@ For more info, please see the [variables file](?tab=inputs).
 | `cluster_network` |The name or self_link of the Google Compute Engine network to which the cluster is connected. | `(Optional)` | `string` |
 | `cluster_name` | The name of the cluster, unique within the project and location. | `(Required)` | `string` |
 | `machine_type` | The name of a Google Compute Engine machine type. | `(Optional)` | `string` |
+| image_type     | The disk side of each node in the cluster         |  `(Optional)`| `string`  |  
+| labels         | The label of the node in the cluster.             |  `(optional) | `map`| 
 
 If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
 

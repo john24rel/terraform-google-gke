@@ -22,6 +22,9 @@ resource "google_container_cluster" "create" {
   project            = "${var.google_project_id}"
 
   node_config {
-    machine_type = "${var.machine_type}"
+    image_type       = "${var.image_type}"
+    disk_size_gb  = "${var.disk_size_in_gb}"
+    machine_type     = "${var.machine_type}"
+    labels           = "${var.labels}"
   }
 }

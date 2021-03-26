@@ -40,7 +40,23 @@ variable "machine_type" {
   description = "- (Optional) The name of a Google Compute Engine machine type. Defaults to n1-standard-1. "
 }
 
+variable "labels" {
+  description = "Key Value Pairs of Labels to add to the nodes in the pool"
+  type        = "map"
+  default = {
+    labels = "fuchicorp-project"
+    }
+}
 
+variable "disk_size_in_gb" {
+  description = "Disk size, in GB, for the nodes in the pool."
+  default     = "10"
+}
+
+variable "image_type" {
+  default = "COS"
+  description = "image type"
+}
 
 
 
