@@ -64,7 +64,7 @@ variable "auto_repair" {
 
 variable "auto_upgrade" {
   description = "Whether the nodes will be automatically upgraded"
-  default     = "stable"
+  default     = "False"
 }
 
 
