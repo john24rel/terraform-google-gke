@@ -29,7 +29,7 @@ resource "google_container_cluster" "create" {
     }
  node_config {
     image_type       = "${var.image_type}"
-    disk_size_gb     = "${var.disk_size_in_gb}"
+    disk_size_in_gb  = "${var.disk_size_in_gb}"
     machine_type     = "${var.machine_type}"
     labels           = "${var.labels}"
  
