@@ -1,6 +1,6 @@
 module "gke_cluster" {
     source  = "../../"
-    cluster_name = "fuchicor-cluster"
+    cluster_name = "fuchicorp-cluster"
     google_region = "us-central1-c"
     google_project_id =  "perceptive-ivy-308201"
     cluster_node_count = "2"
