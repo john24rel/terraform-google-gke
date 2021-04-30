@@ -54,6 +54,8 @@ For more info, please see the [variables file](?tab=inputs).
 | `machine_type` | The name of a Google Compute Engine machine type. | `(Optional)` | `string` |
 | image_type     | The disk side of each node in the cluster         |  `(Optional)`| `string`  |  
 | labels         | The label of the node in the cluster.             |  `(optional) | `map`| 
+| `auto_upgrade`  |  The autoupgrade of the node in the cluster.     |  `(optional)` |  `string`  |                                         |              |
+| `auto_repair`   |  The autorepair of the node in the cluster.     |  `(optional)` |  `string`  |  
 
 If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
 

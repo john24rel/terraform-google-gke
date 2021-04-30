@@ -57,7 +57,15 @@ variable "image_type" {
   default = "COS"
   description = "image type"
 }
+variable "auto_repair" {
+  description = "Whether the nodes will be automatically repaired"
+  default     = true
+}
 
+variable "auto_upgrade" {
+  description = "Whether the nodes will be automatically upgraded"
+  default     = false
+}
 
 
 
