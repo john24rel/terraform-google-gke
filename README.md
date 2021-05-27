@@ -58,7 +58,8 @@ For more info, please see the [variables file](?tab=inputs).
 | `auto_repair`   |  The autorepair of the node in the cluster.      |  `(optional)` |  `string`  |  
 | `node_version`   |  The node_version of the  cluster.              |  `(optional)` |  `string`  |  
 | `min_master_version`   |  The min_master_version of the cluster.   |  `(optional)` |  `string`  |  
-| `preemptible_nodes`   |  The preemptible  of the node in the cluster. |  `(optional)` |  `string`  |  
+| `preemptible_nodes`   |  The preemptible  of the node in the cluster. |  `(optional)` |  `string`  | 
+| `node_pool`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
 
 
 
