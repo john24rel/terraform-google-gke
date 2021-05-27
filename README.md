@@ -20,7 +20,7 @@ module "gke_cluster" {
     google_region = "us-central1"
     google_project_id = "fsadykov-project"
     cluster_node_count = "2"
-    cluster_version = "1.15"
+    cluster_version = "1.17"
     google_credentials = "./fuchicorp-service-account.json" # service account 
     image_type        = "COS"
     disk_size_in_gb   = "10"
@@ -55,7 +55,13 @@ For more info, please see the [variables file](?tab=inputs).
 | image_type     | The disk side of each node in the cluster         |  `(Optional)`| `string`  |  
 | labels         | The label of the node in the cluster.             |  `(optional) | `map`| 
 | `auto_upgrade`  |  The autoupgrade of the node in the cluster.     |  `(optional)` |  `string`  |                                         |              |
-| `auto_repair`   |  The autorepair of the node in the cluster.     |  `(optional)` |  `string`  |  
+| `auto_repair`   |  The autorepair of the node in the cluster.      |  `(optional)` |  `string`  |  
+| `node_version`   |  The node_version of the  cluster.              |  `(optional)` |  `string`  |  
+| `min_master_version`   |  The min_master_version of the cluster.   |  `(optional)` |  `string`  |  
+| `preemptible_nodes`   |  The preemptible  of the node in the cluster. |  `(optional)` |  `string`  |  
+
+
+
 
 If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
 
