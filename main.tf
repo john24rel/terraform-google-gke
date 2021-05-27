@@ -24,7 +24,7 @@ resource "google_container_cluster" "create" {
   project            = "${var.google_project_id}"
  
  node_pool {
-    name               = "${var.cluster_name}-node-pool"
+    name               = "${var.node_pool}"
     version            = "${var.cluster_version}"
     initial_node_count = "${var.cluster_node_count}"
     management {
