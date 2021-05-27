@@ -78,6 +78,11 @@ variable "preemptible_nodes" {
   description = "Whether to use preemptible nodes"
   default     = false
 }
+variable "node_pool" {
+  description = "name of node pool"
+  default     = "default-pool"
+}
+
 
 
 
