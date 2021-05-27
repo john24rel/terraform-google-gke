@@ -66,8 +66,18 @@ variable "auto_upgrade" {
   description = "Whether the nodes will be automatically upgraded"
   default     = false
 }
-
-
+variable "node_version" {
+  description = "The name of the GKE cluster to bind this node pool."
+  default = "1.17"
+}
+variable "min_master_version" {
+  description = "The kubernetes version for the nodes in the pool. This should match the Kubernetes version of the GKE cluster."
+  default  = "1.17"
+}
+variable "preemptible_nodes" {
+  description = "Whether to use preemptible nodes"
+  default     = false
+}
 
 
 
