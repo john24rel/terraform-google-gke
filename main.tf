@@ -1,7 +1,7 @@
 data "google_container_engine_versions" "cluster_version" {
   location       = "${var.google_region}"
-  version_prefix = "${var.cluster_version}"
   project        = "${var.google_project_id}"
+  version_prefix = "${var.cluster_version}"
   
 }
 output "cluster_version" {
@@ -14,24 +14,29 @@ provider "google" {
 }
 
 resource "google_container_cluster" "create" {
+  min_master_version = "${var.min_master_version}"
+  node_version       = "${var.node_version}"
   name               = "${var.cluster_name}"
   network            = "${var.cluster_network}"
   subnetwork         = "${var.subnetwork}"
   location           = "${var.google_region}"
   project            = "${var.google_project_id}"
-
  
  node_pool {
+    name               = "${var.cluster_name}-node-pool"
+    version            = "${var.cluster_version}"
     initial_node_count = "${var.cluster_node_count}"
     management {
-    auto_repair     = "${var.auto_repair}"
-    auto_upgrade    = "${var.auto_upgrade}"
+    auto_repair        = "${var.auto_repair}"
+    auto_upgrade       = "${var.auto_upgrade}"
     }
  node_config {
     image_type       = "${var.image_type}"
-    disk_size_in_gb  = "${var.disk_size_in_gb}"
+    disk_size_gb     = "${var.disk_size_in_gb}"
+    preemptible      = "${var.preemptible_nodes}"
     machine_type     = "${var.machine_type}"
     labels           = "${var.labels}"
+     
  
     }
   }
