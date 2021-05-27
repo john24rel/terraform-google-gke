@@ -1,7 +1,8 @@
 data "google_container_engine_versions" "cluster_version" {
   location       = "${var.google_region}"
-  project        = "${var.google_project_id}"
   version_prefix = "${var.cluster_version}"
+  project        = "${var.google_project_id}"
+
   
 }
 output "cluster_version" {
