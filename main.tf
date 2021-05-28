@@ -25,7 +25,6 @@ resource "google_container_cluster" "create" {
  
  node_pool {
     name               = "${var.node_pool}"
-    version            = "${var.cluster_version}"
     initial_node_count = "${var.cluster_node_count}"
     management {
     auto_repair        = "${var.auto_repair}"
