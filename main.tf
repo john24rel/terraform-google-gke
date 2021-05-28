@@ -16,6 +16,7 @@ provider "google" {
 
 resource "google_container_cluster" "create" {
   min_master_version = "${data.google_container_engine_versions.cluster_version.latest_node_version}"
+  node_version       = "${data.google_container_engine_versions.cluster_version.latest_node_version}"
   name               = "${var.cluster_name}"
   network            = "${var.cluster_network}"
   subnetwork         = "${var.subnetwork}"
