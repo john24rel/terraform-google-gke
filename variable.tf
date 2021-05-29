@@ -41,7 +41,7 @@ variable "machine_type" {
 }
 
 variable "labels" {
-  description = "Key Value Pairs of Labels to add to the nodes in the pool"
+  description = "- (Optional) Key Value Pairs of Labels to add to the nodes in the pool"
   type        = "map"
   default = {
     labels = "fuchicorp-project"
@@ -49,7 +49,7 @@ variable "labels" {
 }
 
 variable "disk_size_in_gb" {
-  description = "Disk size, in GB, for the nodes in the pool."
+  description = "- (Optional) Disk size, in GB, for the nodes in the pool."
   default     = "10"
 }
 
@@ -58,28 +58,32 @@ variable "image_type" {
   description = "image type"
 }
 variable "auto_repair" {
-  description = "Whether the nodes will be automatically repaired"
+  description = "- (Optional) Whether the nodes will be automatically repaired"
   default     = true
 }
 
 variable "auto_upgrade" {
-  description = "Whether the nodes will be automatically upgraded"
+  description = "- (Optional) Whether the nodes will be automatically upgraded"
   default     = false
 }
+
 variable "node_version" {
-  description = "The name of the GKE cluster to bind this node pool."
+  description = "- (Optional) The name of the GKE cluster to bind this node pool."
   default = "1.17"
 }
+
 variable "min_master_version" {
-  description = "The kubernetes version for the nodes in the pool. This should match the Kubernetes version of the GKE cluster."
+  description = "- (Optional) The kubernetes version for the nodes in the pool. This should match the Kubernetes version of the GKE cluster."
   default  = "1.17"
 }
+
 variable "preemptible_nodes" {
-  description = "Whether to use preemptible nodes"
+  description = "- (Optional) Whether to use preemptible nodes"
   default     = false
 }
+
 variable "node_pool" {
-  description = "name of node pool"
+  description = "- (Optional) Name of node pool"
   default     = "default-pool"
 }
 
