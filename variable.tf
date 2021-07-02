@@ -87,6 +87,16 @@ variable "node_pool" {
   default     = "default-pool"
 }
 
+variable "gce_ssh_user" {
+  default     = "root"
+  description = "- (Optional) That's will use for entry via ssh to the bastion host"
+}
+
+variable "gce_ssh_pub_key_file" {
+  default     = "~/.ssh/id_rsa.pub"
+  description = "- (Optional) Here is will be a choosing an access method"
+}
+
 
 
 

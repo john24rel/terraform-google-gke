@@ -14,6 +14,12 @@ provider "google" {
   project     = "${var.google_project_id}"
 }
 
+resource "google_compute_project_metadata" "my_ssh_key" {
+  metadata {
+    sshKeys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
+ }
+}
+
 resource "google_container_cluster" "create" {
   min_master_version = "${data.google_container_engine_versions.cluster_version.latest_node_version}"
   node_version       = "${data.google_container_engine_versions.cluster_version.latest_node_version}"
