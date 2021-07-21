@@ -87,6 +87,15 @@ variable "node_pool" {
   default     = "default-pool"
 }
 
+variable "gce_ssh_user" {
+  description = "- (Optional) ssh user"
+  default     = "default-user"
+}
+
+variable "gce_ssh_pub_key_file" {
+  description = "- (Optional) ssh pub key file"
+  default     = "~/.ssh/id_rsa.pub"
+}
 
 
 
