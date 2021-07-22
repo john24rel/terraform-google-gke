@@ -62,7 +62,12 @@ For more info, please see the [variables file](?tab=inputs).
 | `gce_ssh_user`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
 | `gce_ssh_pub_key_file`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
 
+## Output
 
+Use the following output to learn how to ssh to your nodes
+```
+output "ssh_info"
+```
 
 
 If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
