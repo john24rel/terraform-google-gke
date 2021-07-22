@@ -64,7 +64,7 @@ For more info, please see the [variables file](?tab=inputs).
 
 ## Output
 
-Use the following output to learn how to ssh to your nodes
+Use the following output to learn how to ssh to your nodes:
 ```
 output "ssh_info"
 ```
