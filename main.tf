@@ -36,8 +36,10 @@ resource "google_container_cluster" "create" {
     preemptible      = "${var.preemptible_nodes}"
     machine_type     = "${var.machine_type}"
     labels           = "${var.labels}"
-     
- 
+    metadata = {
+      ssh-keys = "${var.gce_ssh_user}:${file(var.gce_ssh_pub_key_file)}"
+      disable-legacy-endpoints = "true"
+    }
     }
   }
 }

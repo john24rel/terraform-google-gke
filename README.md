@@ -20,10 +20,11 @@ module "gke_cluster" {
     google_region = "us-central1"
     google_project_id = "fsadykov-project"
     cluster_node_count = "2"
-    cluster_version = "1.17"
+    cluster_version = "1.19"
     google_credentials = "./fuchicorp-service-account.json" # service account 
     image_type        = "COS"
     disk_size_in_gb   = "10"
+    gce_ssh_user    = "default-user"
     labels            = {
         "label" = "fuchicorp-project"
     }
@@ -58,8 +59,15 @@ For more info, please see the [variables file](?tab=inputs).
 | `auto_repair`   |  The autorepair of the node in the cluster.      |  `(optional)` |  `string`  |  
 | `preemptible_nodes`   |  The preemptible  of the node in the cluster. |  `(optional)` |  `string`  | 
 | `node_pool`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
+| `gce_ssh_user`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
+| `gce_ssh_pub_key_file`   |  The name of the node_pool in the cluster.            |  `(optional)` |  `string`  |  
 
+## Output
 
+Use the following output to learn how to ssh to your nodes:
+```
+output "ssh_info"
+```
 
 
 If you have any issues please feel free to submit the issue [new issue](https://github.com/fuchicorp/terraform-google-gke/issues/new) 
