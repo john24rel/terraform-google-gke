@@ -14,6 +14,14 @@ variable "cluster_node_count" {
   type = "string"
   description = "- (Required) Number of nodes for the cluster."
 }
+variable "min_desired_count" {
+  type = "string"
+  description = "- (Required) Number of minimum desired nodes for the cluster."
+}
+variable "max_desired_count" {
+  type = "string"
+  description = "- (Required) Number of maximum desired nodes for the cluster."
+}
 variable "google_credentials" {
   type = "string"
   description = "- (Required) your google service account `example.json`"

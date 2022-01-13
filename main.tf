@@ -30,6 +30,10 @@ resource "google_container_cluster" "create" {
     auto_repair        = "${var.auto_repair}"
     auto_upgrade       = "${var.auto_upgrade}"
     }
+    autoscaling {
+    min_node_count     = "${var.min_desired_count}"
+    max_node_count     = "${var.max_desired_count}"
+    }
  node_config {
     image_type       = "${var.image_type}"
     disk_size_gb     = "${var.disk_size_in_gb}"
