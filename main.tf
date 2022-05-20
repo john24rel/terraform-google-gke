@@ -62,7 +62,7 @@ resource "google_container_cluster" "create" {
 
 resource "google_container_node_pool" "on_demand_nodes" {
   name       = "on-demand-node"
-  cluster    = google_container_cluster.create.id
+  cluster    = "${google_container_cluster.create.id}"
   node_count = "${var.on_demand_node_count}"
 
   node_config {
