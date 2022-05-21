@@ -116,7 +116,7 @@ variable "gce_ssh_pub_key_file" {
 
 variable "spot_instance" {
   description = "- (Optional) optional for spot instances"
-  default     = "false"
+  default     = "true"
 }
 
 variable "on_demand_node_count" {
