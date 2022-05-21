@@ -16,7 +16,7 @@ provider "google" {
 provider "google-beta" {
   credentials = "${file("${var.google_credentials}")}" #GOOGLE_CREDENTIALS to the path of a file containing the credential JSON
   project     = "${var.google_project_id}"
-  version     = "4.4.0"
+  version     = "<= 4.4.0"
 }
 
 
