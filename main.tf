@@ -11,6 +11,7 @@ output "cluster_version" {
 provider "google" {
   credentials = file(var.google_credentials) #GOOGLE_CREDENTIALS to the path of a file containing the credential JSON
   project     = var.google_project_id
+  version     = "4.23.0"
 }
 
 provider "google-beta" {
