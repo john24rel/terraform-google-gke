@@ -31,6 +31,10 @@ resource "google_container_cluster" "create" {
   location                 = var.google_region
   project                  = var.google_project_id
   initial_node_count       = var.initial_node_count
+
+  private_cluster_config {
+    enable_private_nodes   = var.enable_private_nodes
+  }
 }
 
 resource "google_container_node_pool" "spot_nodes" {
