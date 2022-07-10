@@ -34,7 +34,11 @@ resource "google_container_cluster" "create" {
 
   private_cluster_config {
     enable_private_nodes   = var.enable_private_nodes
+    master_ipv4_cidr_block = "10.0.30.0/28"
+    enable_private_endpoint= var.enable_private_endpoint
   }
+
+  ip_allocation_policy {}
 }
 
 resource "google_container_node_pool" "spot_nodes" {
@@ -66,4 +70,5 @@ resource "google_container_node_pool" "spot_nodes" {
         disable-legacy-endpoints = true
       }
     } 
-}
+  }
+      

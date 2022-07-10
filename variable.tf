@@ -127,5 +127,11 @@ variable "spot_instance" {
 
 variable "enable_private_nodes" {
   description = "- (Optional) Enables the private cluster feature, creating a private endpoint on the cluster. In a private cluster, nodes only have RFC 1918 private addresses and communicate with the master's private endpoint via private networking."
-  default     = true
+  default     = "true"
 }
+
+variable "enable_private_endpoint" {
+  description = "- (Optional) Enables the private cluster feature, creating a private endpoint on the cluster. In a private cluster, nodes only have RFC 1918 private addresses and communicate with the master's private endpoint via private networking."
+  default     = "false"
+}
+
