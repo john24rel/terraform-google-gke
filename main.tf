@@ -34,7 +34,7 @@ resource "google_container_cluster" "create" {
 
   private_cluster_config {
     enable_private_nodes   = var.enable_private_nodes
-    master_ipv4_cidr_block = "10.0.30.0/28"
+    master_ipv4_cidr_block = var.master_ipv4_cidr_block
     enable_private_endpoint= var.enable_private_endpoint
   }
 
