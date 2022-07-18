@@ -126,8 +126,8 @@ variable "spot_instance" {
 }
 
 variable "enable_private_nodes" {
-  description = "- (Optional) Enables the private cluster feature, creating a private endpoint on the cluster. In a private cluster, nodes only have RFC 1918 private addresses and communicate with the master's private endpoint via private networking."
-  default     = "true"
+  description = "- (Optional) Indicates that the cluster's nodes do not have external IP addresses."
+  default     = "false"
 }
 
 variable "enable_private_endpoint" {
@@ -136,6 +136,35 @@ variable "enable_private_endpoint" {
 }
 
 variable "master_ipv4_cidr_block" {
-  description = "- (Required)"
+  description = "- (Required) Specifies an internal IP address range for the control plane. This setting is permanent for this cluster and must be unique within the VPC."
+  default = "172.16.0.16/28"
+}
+
+variable "gcloud_region" {
+  type        = string
+  description = "-  Region where the router resides. Cloud NAT region."
+}
+
+variable "firewall_name" {
+  type        = string
+  description = "- (Required) Firewall name. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
+  default = "allow-ssh"
+}
+
+variable "router_name" {
+  type        = string
+  description = "- (Required) Cloud NAT router name. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
+  default = "nat-router"
+}
+
+variable "cloud_nat_name" {
+  type        = string
+  description = "- (Required) Name of the Cloud NAT. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
+  default = "nat-config"
+}
+
+variable "source_subnetwork_ip_ranges_to_nat" {
+  description = "- (Required) NAT should be configured per Subnetwork.If ALL_SUBNETWORKS_ALL_IP_RANGES, all of the IP ranges in every Subnetwork are allowed to Nat."
+  default = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 

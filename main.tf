@@ -41,6 +41,40 @@ resource "google_container_cluster" "create" {
   ip_allocation_policy {}
 }
 
+# [START vpc_firewall_nat_gke]
+resource "google_compute_firewall" "rules" {
+  project = var.google_project_id
+  name    = var.firewall_name 
+  network = var.cluster_network
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+}
+# [END vpc_firewall_nat_gke]      
+
+
+# [START cloudnat_router_nat_gke]
+resource "google_compute_router" "router" {
+  project = var.google_project_id
+  name    = var.router_name
+  network = var.cluster_network
+  region  = var.gcloud_region
+}
+# [END cloudnat_router_nat_gke]
+
+# [START cloudnat_nat_gke]
+module "cloud-nat" {
+  source                             = "terraform-google-modules/cloud-nat/google"
+  version                            = "~> 2.2.1"
+  project_id                         = var.google_project_id
+  region                             = var.gcloud_region
+  router                             = google_compute_router.router.name
+  name                               = var.cloud_nat_name 
+  source_subnetwork_ip_ranges_to_nat = var.source_subnetwork_ip_ranges_to_nat
+}
+# [END cloudnat_nat_gke]
+
 resource "google_container_node_pool" "spot_nodes" {
     name               = "spot-nodes"
     node_count         = var.cluster_node_count
@@ -70,5 +104,43 @@ resource "google_container_node_pool" "spot_nodes" {
         disable-legacy-endpoints = true
       }
     } 
-  }
-      
+  } 
+  
+// # [START vpc_firewall_nat_gke]
+// resource "google_compute_firewall" "rules" {
+//   project = var.google_project_id
+//   name    = "allow-ssh"
+//   network = var.cluster_network
+//   allow {
+//     protocol = "tcp"
+//     ports    = ["22"]
+//   }
+//   source_ranges = ["35.235.240.0/20"]
+// }
+// # [END vpc_firewall_nat_gke]      
+
+
+// # [START cloudnat_router_nat_gke]
+// resource "google_compute_router" "router" {
+//   project = var.google_project_id
+//   name    = "nat-router"
+//   network = var.cluster_network
+//   region  = "us-west1"
+// }
+// # [END cloudnat_router_nat_gke]
+
+// # [START cloudnat_nat_gke]
+// module "cloud-nat" {
+//   source                             = "terraform-google-modules/cloud-nat/google"
+//   version                            = "~> 2.2.1"
+//   project_id                         = var.google_project_id
+//   region                             = "us-west1"
+//   router                             = google_compute_router.router.name
+//   name                               = "nat-config"
+//   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
+// }
+// # [END cloudnat_nat_gke]
+
+
+
+
