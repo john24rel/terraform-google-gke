@@ -1,5 +1,5 @@
 data "google_container_engine_versions" "cluster_version" {
-  location       = var.google_region
+  location       = var.google_zone
   version_prefix = var.cluster_version
   project        = var.google_project_id
 }
@@ -28,58 +28,37 @@ resource "google_container_cluster" "create" {
   name                     = var.cluster_name
   network                  = var.cluster_network
   subnetwork               = var.subnetwork
-  location                 = var.google_region
+  location                 = var.google_zone
   project                  = var.google_project_id
   initial_node_count       = var.initial_node_count
-
+  // node_locations = [
+  //   "us-west1-a",
+  //   "us-west1-c"
+  // ]
   private_cluster_config {
     enable_private_nodes   = var.enable_private_nodes
     master_ipv4_cidr_block = var.master_ipv4_cidr_block
     enable_private_endpoint= var.enable_private_endpoint
   }
 
-  ip_allocation_policy {}
-}
-
-# [START vpc_firewall_nat_gke]
-resource "google_compute_firewall" "rules" {
-  project = var.google_project_id
-  name    = var.firewall_name 
-  network = var.cluster_network
-  allow {
-    protocol = "tcp"
-    ports    = ["22"]
+  ip_allocation_policy {
+    cluster_ipv4_cidr_block  = var.cluster_ipv4_cidr_block
+    services_ipv4_cidr_block = var.services_ipv4_cidr_block
+    // cluster_secondary_range_name = var.cluster_secondary_range_name
+    // services_secondary_range_name = var.services_secondary_range_name
   }
 }
-# [END vpc_firewall_nat_gke]      
-
-
-# [START cloudnat_router_nat_gke]
-resource "google_compute_router" "router" {
-  project = var.google_project_id
-  name    = var.router_name
-  network = var.cluster_network
-  region  = var.gcloud_region
-}
-# [END cloudnat_router_nat_gke]
-
-# [START cloudnat_nat_gke]
-module "cloud-nat" {
-  source                             = "terraform-google-modules/cloud-nat/google"
-  version                            = "~> 2.2.1"
-  project_id                         = var.google_project_id
-  region                             = var.gcloud_region
-  router                             = google_compute_router.router.name
-  name                               = var.cloud_nat_name 
-  source_subnetwork_ip_ranges_to_nat = var.source_subnetwork_ip_ranges_to_nat
-}
-# [END cloudnat_nat_gke]
 
 resource "google_container_node_pool" "spot_nodes" {
     name               = "spot-nodes"
     node_count         = var.cluster_node_count
     cluster            = google_container_cluster.create.id
     provider           = google-beta
+    // node_locations = [
+    //   "us-east1-a",
+    //   "us-east1-c",
+    //   "us-east1-b"
+    // ]
 
     management {
       auto_repair  = var.auto_repair

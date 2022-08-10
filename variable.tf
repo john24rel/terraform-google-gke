@@ -2,9 +2,9 @@ variable "google_project_id" {
   description = "- (Required)  Google account project id."
 }
 
-variable "google_region" {
+variable "google_zone" {
   type        = string
-  description = "- (Required) Google region where the cluster will be deployed."
+  description = "- (Required) Google zone where the cluster will be deployed."
 }
 
 variable "cluster_version" {
@@ -140,31 +140,20 @@ variable "master_ipv4_cidr_block" {
   default = "172.16.0.16/28"
 }
 
-variable "gcloud_region" {
+variable "google_region" {
   type        = string
   description = "-  Region where the router resides. Cloud NAT region."
 }
 
-variable "firewall_name" {
+
+variable "services_ipv4_cidr_block" {
   type        = string
-  description = "- (Required) Firewall name. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
-  default = "allow-ssh"
+  description = ""
+  default ="10.200.0.0/20"
 }
 
-variable "router_name" {
+variable "cluster_ipv4_cidr_block" {
   type        = string
-  description = "- (Required) Cloud NAT router name. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
-  default = "nat-router"
+  description = ""
+  default ="10.100.0.0/16"
 }
-
-variable "cloud_nat_name" {
-  type        = string
-  description = "- (Required) Name of the Cloud NAT. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035." 
-  default = "nat-config"
-}
-
-variable "source_subnetwork_ip_ranges_to_nat" {
-  description = "- (Required) NAT should be configured per Subnetwork.If ALL_SUBNETWORKS_ALL_IP_RANGES, all of the IP ranges in every Subnetwork are allowed to Nat."
-  default = "ALL_SUBNETWORKS_ALL_IP_RANGES"
-}
-
